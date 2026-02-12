@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Loan Applications</title>
+  <link rel="stylesheet" href="../CSS/admin.css">
+</head>
+<body>
+
+<h1 class="title">Loan Applications</h1>
+<div class="underline"></div>
+
+<div class="tabs">
+  <button onclick="loadLoans()">All Loan</button>
+  <button onclick="loadLoans('Pending')">Pending</button>
+  <button onclick="loadLoans('Approved')">Approved</button>
+  <button onclick="loadLoans('Rejected')">Rejected</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Applicant Name</th>
+      <th>Loan Type</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="loanTable"></tbody>
+</table>
+
+<script src="../JS/admin.js"></script>
+</body>
+</html>

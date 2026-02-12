@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Loan</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+   <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">LoanUp</div>
+
+    <nav class="nav-links">
+      <a href="../public/home.html">Home</a>
+      <a href="../public/apply-loan.html">Apply</a>
+      <a href="../public/loan-status.html">Loan Status</a>
+      <a href="../public/register.html">Register</a>
+      <a href="../public/login.html">Sign up</a>
+
+        <!-- User Icon -->
+        <div class="user-menu">
+            <span onclick="toggleMenu()">👤</span>
+            <div class="dropdown" id="userDropdown">
+                <button onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Apply for Loan</h2>
+    <div class="line"></div>
+
+    <form id="loanForm">
+        <div class="form-group full">
+            <label>Full Name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label>Account number</label>
+                <input
+                    type="text"
+                    id="accountNumber"
+                    name="accountNumber"
+                    placeholder="Account number"
+                    readonly
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Loan type</label>
+                <select id="loanType" name="loanType" required>
+                    <option value="">Select loan type</option>
+                    <option>Home Loan</option>
+                    <option>Education Loan</option>
+                    <option>Personal Loan</option>
+                    <option>Vehicle Loan</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label>Loan Amount</label>
+                <input type="number" id="loanAmount" name="loanAmount" placeholder="Enter loan amount" required>
+            </div>
+
+            <div class="form-group">
+                <label>Monthly Income</label>
+                <input type="number" id="monthlyIncome" name="monthlyIncome" placeholder="Enter monthly income" required>
+            </div>
+        </div>
+
+        <div class="form-group full">
+            <label>Income Proof</label>
+            <input type="file" id="incomeProof" name="incomeProof" required>
+        </div>
+
+        <button class="btn">Submit Application</button>
+    </form>
+</div>
+
+<!-- Success Modal -->
+<div class="modal" id="successModal">
+    <div class="modal-content">
+        <h3>Thanks for applying!</h3>
+        <p>Your loan application has been submitted successfully</p>
+        <button onclick="closeModal()">OK</button>
+    </div>
+</div>
+
+<!-- Login Required Modal -->
+<div class="modal" id="loginModal">
+    <div class="modal-content">
+        <h3>Please Login</h3>
+        <p>Please login to apply for the loan.</p>
+        <button onclick="redirectToLogin()">OK</button>
+    </div>
+</div>
+
+<script src="../JS/applyLoan.js"></script>
+
+<!-- ✅ AUTO-FILL ACCOUNT NUMBER -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const accountNumber = localStorage.getItem("accountNumber");
+    const accountInput = document.getElementById("accountNumber");
+
+    if (accountNumber && accountInput) {
+        accountInput.value = accountNumber;
+    }
+});
+</script>
+
+</body>
+</html>

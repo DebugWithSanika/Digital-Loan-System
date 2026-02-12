@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">LoanUp</div>
+
+    <nav class="nav-links">
+      <a href="../public/home.html">Home</a>
+      <a href="../public/apply-loan.html">Apply</a>
+      <a href="../public/loan-status.html">Loan Status</a>
+      <a href="../public/register.html">Register</a>
+      <a href="../public/login.html">Sign up</a>
+
+        <!-- User Icon -->
+        <div class="user-menu">
+            <span onclick="toggleMenu()">👤</span>
+            <div class="dropdown" id="userDropdown">
+                <button onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Create Account</h2>
+
+    <form onsubmit="return firebaseRegister()">
+
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Mobile number</label>
+            <input type="tel" id="mobileNumber" placeholder="Enter mobile number" required>
+        </div>
+
+        <div class="form-group">
+            <label>Account number</label>
+            <input type="text" id="accountNumber" placeholder="Enter account number" required>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Enter strong password" required>
+        </div>
+
+        <p id="password-error" class="password-error">
+            Password must be at least 8 characters and include uppercase, lowercase, number, and special character.
+        </p>
+
+        <div class="form-group">
+            <label>Confirm password</label>
+            <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+        </div>
+
+        <p id="error-msg" class="password-error"></p>
+
+        <button type="submit" class="btn">Register</button>
+    </form>
+
+    <div class="login">
+        <a href="login.html">Login</a>
+    </div>
+</div>
+
+<!-- Firebase Authentication Logic -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCkoTeHAgR8gPUJky3ok0Ho6WSu4zI8Ot8",
+  authDomain: "digital-loan-system.firebaseapp.com",
+  projectId: "digital-loan-system",
+  storageBucket: "digital-loan-system.firebasestorage.app",
+  messagingSenderId: "941102211049",
+  appId: "1:941102211049:web:06ba3a82c2e95e6be3b578"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.firebaseRegister = function () {
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const mobileNumber = document.getElementById("mobileNumber").value;
+  const accountNumber = document.getElementById("accountNumber").value;
+  const password = document.getElementById("password").value;
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(async (userCredential) => {
+
+      const uid = userCredential.user.uid;
+
+      // Save user info locally
+      localStorage.setItem("userName", name);
+      localStorage.setItem("userEmail", email);
+
+      // Save user details to your backend
+      await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, mobileNumber, accountNumber, uid })
+      });
+
+      alert("User Registered Successfully!");
+      window.location.href = "login.html";
+    })
+    .catch((error) => {
+      if (error.code === "auth/email-already-in-use") {
+        alert("Email already registered. Please login.");
+        window.location.href = "login.html"; // redirect to login page
+      } else {
+        alert(error.message);
+      }
+    });
+
+  return false;
+};
+</script>
+
+<script src="../script.js"></script>
+</body>
+</html>

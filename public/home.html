@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LoanUp</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+   <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">LoanUp</div>
+
+    <nav class="nav-links">
+      <a href="../public/home.html">Home</a>
+      <a href="../public/apply-loan.html">Apply</a>
+      <a href="../public/loan-status.html">Loan Status</a>
+      <a href="../public/register.html">Register</a>
+      <a href="../public/login.html">Sign up</a>
+
+        <!-- User Icon -->
+        <div class="user-menu">
+            <span onclick="toggleMenu()">👤</span>
+            <div class="dropdown" id="userDropdown">
+                <button onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<hr class="divider">
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Quick loan to get financial problem solutions fast</h1>
+    <p>Get instant loan hassel-free with <span>LoanUp</span></p>
+    <a href="../public/apply-loan.html" class="btn-apply">Apply now</a>
+  </div>
+
+  <div class="hero-image">
+    <img src="../Images/Hero.png" alt="Online Loan Illustration">
+  </div>
+</section>
+
+<!-- SCRIPT -->
+<script src="../script.js"></script>
+</body>
+</html>

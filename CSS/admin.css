@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap');
+
+body {
+  background: #e7f3ff;
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+.title {
+  text-align: center;
+  color: #1e4e8d;
+  margin-top: 40px;
+}
+
+.underline {
+  width: 180px;
+  height: 2px;
+  background: black;
+  margin: 8px auto 30px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.tabs button {
+  padding: 12px 40px;
+  border: 1px solid #1e4e8d;
+  background: white;
+  color: #1e4e8d;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.tabs button:hover {
+  background: #1e4e8d;
+  color: white;
+}
+
+table {
+  width: 90%;
+  margin: auto;
+  border-collapse: collapse;
+  background: white;
+}
+
+th {
+  background: #1e4e8d;
+  color: white;
+  padding: 14px;
+}
+
+td {
+  padding: 14px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.status.approved { background: #00bf63; color: white; padding: 6px 14px; }
+.status.pending { background: #ffbd59; color: white; padding: 6px 14px; }
+.status.rejected { background: #ff3131; color: white; padding: 6px 14px; }
+
+.btn-approve {
+  background: #00bf63;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+.btn-reject {
+  background: #ff3131;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+}
